@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Carrinho de Compras</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:dataTable var="it" value="#{carrinhoBean.carrinho}" cellpadding="2" cellspacing="2" border="1">
+                
+                  <h:column>
+                    <f:facet name="header">Opcao</f:facet>
+                    <h:commandLink value="Delete" action="#{carrinhoBean.delete(it)}" onclick="return confirm('Deseja eliminar o Item do carrinho ?')"></h:commandLink>
+                </h:column> 
+                
+                
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{it.idProduto.idProduto}"/>
+                </h:column>  
+                
+                 <h:column>
+                    <f:facet name="header">Produto</f:facet>
+                    <h:outputText value="#{it.idProduto.nomeProduto}"/>
+                </h:column> 
+                
+                 <h:column>
+                    <f:facet name="header">Preço</f:facet>
+                    <h:outputText value="#{it.idProduto.precoProduto}"/>
+                </h:column> 
+                
+                 <h:column>
+                    <f:facet name="header">Quantidade</f:facet>
+                    <h:outputText value="#{it.quantidade}"/>
+                </h:column> 
+                
+                
+                 <h:column>
+                    <f:facet name="header">Sub Total</f:facet>
+                    <h:outputText value="#{it.idProduto.precoProduto * it.quantidade}"/>
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+        <br></br>
+        Total: #{carrinhoBean.suma()}
+        <br></br>
+        <h:form>
+       
+        <h:link value="Continuar a Compar" outcome="index"></h:link>
+        </h:form>
+        
+    </h:body>
+</html>
+
